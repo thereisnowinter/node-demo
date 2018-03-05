@@ -3,14 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <title>用数据库做加法</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h5>你的账户余额是<span id='amount'>&&&amount&&&</span></h5>
+  <h3>你的账户余额是<span id='amount'>&&&amount&&&</span></h3>
   <!-- 这种方法很古老，已经不用 -->
   <form action="/pay" method="post" target="result">
     <input type="submit" value='付款1元'>
   </form>
-  <!-- 使用iframe避免加载新页面 -->
+  <!-- 使用iframe避免加载新页面,注意刷新页面才能看见数值更改 -->
   <iframe name='result' src="about:blank" frameborder="0"></iframe>
 </body>
 </html>

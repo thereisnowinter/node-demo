@@ -22,7 +22,7 @@ var server = http.createServer(function(request, response){
   console.log('HTTP 路径为\n' + path)
   if(path == '/style.css'){
     response.setHeader('Content-Type', 'text/css; charset=utf-8')
-    response.write('body{background-color: #ddd;padding: 50px;}h1{color: #f60;}')
+    response.write('body{background-color: #ddd;padding: 50px;}h3{color: #f60;}')
     response.end()
   }else if(path == '/main.js'){
     response.setHeader('Content-Type', 'text/javascript; charset=utf-8')

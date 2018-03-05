@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>用数据库做加法</title>
+</head>
+<body>
+  <h5>你的账户余额是<span id='amount'>&&&amount&&&</span></h5>
+  <form action="/pay" method="post" target="result">
+    <input type="submit" value='付款1元'>
+  </form>
+  <!-- 使用iframe避免加载新页面 -->
+  <iframe name='result' src="about:blank" frameborder="0"></iframe>
+</body>
+</html>

@@ -17,6 +17,8 @@ myButton.addEventListener('click',function(){
         console.log('typeof JSON.parse(request.responseText)', typeof obj)
         console.log('request.responseText', string)
         console.log('JSON.parse(request.responseText)', obj)
+      } else if(request.status >= 400){
+        console.log('请求失败')
       }
     }
   }

@@ -13,6 +13,7 @@ myButton.addEventListener('click',function(){
         
         let string = request.responseText
         let obj = window.JSON.parse(string)
+        console.log('statusText', request.statusText)
         console.log('typeof request.reponseText', typeof request.responseText)
         console.log('typeof JSON.parse(request.responseText)', typeof obj)
         console.log('request.responseText', string)

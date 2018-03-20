@@ -1,47 +1,59 @@
-/***如果是原生JQ+Primise那么这里***/
-window.jQuery = function(){}
+window.jQuery = function(nodeOrSelector){
+  let nodes = {}
+  nodes.addClass = function(){}
+  nodes.html = function(){}
+  return nodes
+}
 window.$ = window.jQuery
-window.jQuery.ajax = function({ url, method, body, headers }) {
-  return new Promise(function(resolve, reject) { // 重点在这里
-    let request = new XMLHttpRequest() // 创建
-    request.open(method, url, true) // 配置
-    for (let key in headers) { // 设置请求头
-      request.setRequestHeader(key, headers[key])
+
+window.Promise = function(fn){
+  // ...
+  return {
+    then: function(){}
+  }
+}
+
+window.jQuery.ajax = function({url, method, body, headers}){
+  return new Promise(function(resolve, reject){
+    let request = new XMLHttpRequest()
+    request.open(method, url) // 配置request
+    for(let key in headers) {
+      let value = headers[key]
+      request.setRequestHeader(key, value)
     }
-    request.onreadystatechange = () => {
-      if (request.readyState === 4) {
-        if (request.status >= 200 && request.status < 300) {
-          // 调用函数
+    request.onreadystatechange = ()=>{
+      if(request.readyState === 4){
+        if(request.status >= 200 && request.status < 300){
           resolve.call(undefined, request.responseText)
-        } else if (request.status >= 400) {
-          // 调用函数
-          reject.call(undefined, request.getAllResponseHeaders())
+        }else if(request.status >= 400){
+          reject.call(undefined, request)
         }
       }
     }
-    request.send(body) // 发送
+    request.send(body)
   })
 }
-/***到这里删除***/
-/**下面的代码既可以运行自己写ajax也符合原生jq的语法**/
-function success() {
-      console.log("success")
-    }
-function fail() {
-      console.log('fail')
-    }
 
-myButton.addEventListener('click', function() {
-  $.ajax({
+myButton.addEventListener('click', (e)=>{
+  let promise = window.jQuery.ajax({
     url: '/xxx',
-    method: 'GET',
+    method: 'get',
     headers: {
-      'Content-type': 'text/json',
-      'zero': 18
+      'content-type':'application/x-www-form-urlencoded',
+      'frank': '18'
     }
-  }).then(success, fail)
-  .then(
-    (responseText)=>{console.log('request.responseText', responseText)},
-    (allResponseHeader)=>{console.log('allResponseHeader', allResponseHeader)}
+  })
+
+  promise.then(
+    (text)=>{console.log(text)},
+    (request)=>{console.log(request)}
   )
+
 })
+
+
+
+
+
+
+
